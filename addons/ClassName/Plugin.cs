@@ -57,19 +57,36 @@ namespace ClassName
                 }
 
                 IconAttribute icon = t.GetCustomAttribute<IconAttribute>();
-
-                Script script = ResourceLoader.Load<Script>(typeAttr.ScriptPath);
+                Script script = ResourceLoader.Load<Script>(GetScriptPath(typeAttr.ScriptPath));
                 var imagePath = icon?.ImagePath ?? "icon.png";
                 var texture = ResourceLoader.Load<Texture2D>(imagePath);
 
                 var type = $"{t.Name} ({t.Name}.cs)";
                 var @base = GetBaseName(t.BaseType);
-                AddCustomType(type, @base, script, texture);
+                AddCustomType(t.Name, @base, script, texture);
                 _customTypes.Add(type);
             }
         }
 
-        private string GetBaseName(Type baseType)
+        /// <summary>
+        /// 获取脚本路径 
+        /// </summary>
+        /// <param name="scriptPath"></param>
+        /// <returns></returns>
+        private static string GetScriptPath(string scriptPath)
+        {
+            if (string.IsNullOrWhiteSpace(scriptPath)) return scriptPath;
+            if (scriptPath.StartsWith("res://")) return scriptPath;
+            var baseDir = System.IO.Directory.GetCurrentDirectory();
+            return "res:/" + scriptPath.Replace(baseDir, "").Replace("\\", "/");
+        }
+        /// <summary>
+        /// 获取父类类型
+        /// 因为直接是父类无法展示，所有只能获取Godot 内部的定义的类，才能加载出来
+        ///  目前还没有好的解决方法
+        /// </summary>
+        /// <param name="baseType"></param>
+        private static string GetBaseName(Type baseType)
         {
             if (baseType.BaseType == null)
             {
