@@ -1,7 +1,9 @@
+using ClassName.Attributes;
 using Godot;
 using Isoland.Globals;
 
 namespace Isoland.Objects;
+[ClassName]
 public partial class Teleporter : Interactable
 {
 

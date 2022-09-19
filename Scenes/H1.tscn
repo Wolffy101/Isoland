@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb2bfkmwr560j"]
+[gd_scene load_steps=4 format=3 uid="uid://dtka0ndmtv5mu"]
 
 [ext_resource type="PackedScene" uid="uid://dpwdovbrmy5rp" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_1gxi8"]

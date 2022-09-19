@@ -1,9 +1,10 @@
 using System;
+using ClassName.Attributes;
 using Godot;
 using Isoland.Constants;
 
 namespace Isoland.Objects;
-
+[ClassName]
 public partial class Interactable : Area2D
 {
     public override void _InputEvent(Viewport viewport, InputEvent @event, long shapeIdx)

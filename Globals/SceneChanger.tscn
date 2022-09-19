@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgt75h1wl8o2x"]
+[gd_scene load_steps=2 format=3 uid="uid://daq2w16hrkkwk"]
 
 [ext_resource type="Script" path="res://Globals/SceneChanger.cs" id="1_folme"]
 
-[node name="SceneChanger" type="CanvasLayer"]
+[node name="SceneChanger2" type="CanvasLayer"]
 script = ExtResource("1_folme")
 
 [node name="ColorRect" type="ColorRect" parent="."]
