@@ -10,11 +10,11 @@ size = Vector2(230, 320)
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_y3l6v")
 
-[node name="Tepleporter" type="Area2D" parent="." index="0"]
+[node name="ToH2" type="Area2D" parent="." index="0"]
 position = Vector2(877, 338)
 script = ExtResource("3_qksxp")
 _targetPath = "res://Scenes/H2.tscn"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH2" index="0"]
 position = Vector2(-36, 40)
 shape = SubResource("RectangleShape2D_ecdtm")

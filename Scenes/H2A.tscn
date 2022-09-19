@@ -10,11 +10,11 @@ radius = 72.0625
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_0r3ap")
 
-[node name="Tepleporter" type="Area2D" parent="." index="0"]
+[node name="ToH2" type="Area2D" parent="." index="0"]
 position = Vector2(-812, -440)
 script = ExtResource("3_cxlkl")
 _targetPath = "res://Scenes/H2.tscn"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH2" index="0"]
 position = Vector2(8, 10)
 shape = SubResource("CircleShape2D_gh373")

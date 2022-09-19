@@ -16,29 +16,29 @@ size = Vector2(214, 352)
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_2cdm1")
 
-[node name="Tepleporter" type="Area2D" parent="." index="0"]
+[node name="ToH1" type="Area2D" parent="." index="0"]
 position = Vector2(-680, -338)
 script = ExtResource("3_wl5ow")
 _targetPath = "res://Scenes/H1.tscn"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH1" index="0"]
 position = Vector2(8, 10)
 shape = SubResource("CircleShape2D_ktosn")
 
-[node name="Tepleporter2" type="Area2D" parent="." index="1"]
+[node name="ToH4" type="Area2D" parent="." index="1"]
 position = Vector2(740, 18)
 script = ExtResource("3_wl5ow")
 _targetPath = "res://Scenes/H4.tscn"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter2" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH4" index="0"]
 position = Vector2(85, -68)
 shape = SubResource("RectangleShape2D_qh5f8")
 
-[node name="Tepleporter3" type="Area2D" parent="." index="2"]
+[node name="ToH3" type="Area2D" parent="." index="2"]
 position = Vector2(740, 18)
 script = ExtResource("3_wl5ow")
 _targetPath = "res://Scenes/H3.tscn"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter3" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH3" index="0"]
 position = Vector2(-701, -238)
 shape = SubResource("RectangleShape2D_ev4jf")
