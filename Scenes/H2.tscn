@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlt83k7o3v4o5"]
+
+[ext_resource type="PackedScene" uid="uid://dpwdovbrmy5rp" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
+[ext_resource type="Texture2D" uid="uid://dyllglolrdl38" path="res://assets/H2/H2.png" id="2_2cdm1"]
+[ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_wl5ow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktosn"]
+radius = 72.0625
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qh5f8"]
+size = Vector2(266, 504)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4jf"]
+size = Vector2(214, 352)
+
+[node name="Background" instance=ExtResource("1_fnjs5")]
+texture = ExtResource("2_2cdm1")
+
+[node name="Tepleporter" type="Area2D" parent="." index="0"]
+position = Vector2(-680, -338)
+script = ExtResource("3_wl5ow")
+_targetPath = "res://Scenes/H1.tscn"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter" index="0"]
+position = Vector2(8, 10)
+shape = SubResource("CircleShape2D_ktosn")
+
+[node name="Tepleporter2" type="Area2D" parent="." index="1"]
+position = Vector2(740, 18)
+script = ExtResource("3_wl5ow")
+_targetPath = "res://Scenes/H4.tscn"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter2" index="0"]
+position = Vector2(85, -68)
+shape = SubResource("RectangleShape2D_qh5f8")
+
+[node name="Tepleporter3" type="Area2D" parent="." index="2"]
+position = Vector2(740, 18)
+script = ExtResource("3_wl5ow")
+_targetPath = "res://Scenes/H3.tscn"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Tepleporter3" index="0"]
+position = Vector2(-701, -238)
+shape = SubResource("RectangleShape2D_ev4jf")
