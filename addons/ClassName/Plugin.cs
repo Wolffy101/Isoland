@@ -3,6 +3,8 @@ using Godot;
 using System.Reflection;
 using ClassName.Attributes;
 using System.Collections.Generic;
+using System;
+using System.IO;
 
 namespace ClassName
 {
@@ -21,7 +23,7 @@ namespace ClassName
 
         public override void _ExitTree()
         {
-            _RemoveTypes();
+            RemoveTypes();
             RemoveToolMenuItem("Reload C# Resources");
         }
 
@@ -30,7 +32,7 @@ namespace ClassName
             BuildTypes();
         }
 
-        private void _RemoveTypes()
+        private void RemoveTypes()
         {
             if (_customTypes == null) return;
             foreach (var t in _customTypes)
@@ -40,7 +42,7 @@ namespace ClassName
         public void BuildTypes(object ud) => BuildTypes();
         public void BuildTypes()
         {
-            _RemoveTypes(); // Prevent duplicates of the types.
+            RemoveTypes(); // Prevent duplicates of the types.
             AddCustomType("Test", "Area2D", null, null);
             _customTypes = new List<string>();
             var assembly = Assembly.GetExecutingAssembly();
@@ -61,14 +63,23 @@ namespace ClassName
                 var texture = ResourceLoader.Load<Texture2D>(imagePath);
 
                 var type = $"{t.Name} ({t.Name}.cs)";
-                var @base = t.BaseType.Name;
-                if (t.BaseType.GetCustomAttribute<ClassNameAttribute>() != null)
-                {
-                    @base = $"{@base} ({@base}.cs)";
-                }
+                var @base = GetBaseName(t.BaseType);
                 AddCustomType(type, @base, script, texture);
                 _customTypes.Add(type);
             }
+        }
+
+        private string GetBaseName(Type baseType)
+        {
+            if (baseType.BaseType == null)
+            {
+                return baseType.Name;
+            }
+            if ("GodotSharp.dll".Equals(Path.GetFileName(baseType.Assembly.Location), StringComparison.OrdinalIgnoreCase))
+            {
+                return baseType.Name;
+            }
+            return GetBaseName(baseType.BaseType);
         }
     }
 }
