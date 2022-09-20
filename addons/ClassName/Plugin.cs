@@ -63,7 +63,7 @@ namespace ClassName
                 var type = $"{t.Name} ({t.Name}.cs)";
                 var @base = GetBaseName(t.BaseType);
                 AddCustomType(t.Name, @base, script, texture);
-                _customTypes.Add(type);
+                _customTypes.Add(t.Name);
             }
         }
 
