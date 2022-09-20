@@ -17,7 +17,10 @@ namespace ClassName
         {
             _customTypes = new List<string>();
             BuildTypes();
-            Connect("resource_saved", new Callable(this, "OnResourceSaved"));
+            var error = Connect("resource_saved", (Delegate)((Resource p) =>
+            {
+                BuildTypes();
+            }));
             AddToolMenuItem("Reload C# Resources", new Callable(this, nameof(BuildTypes)));
         }
 
@@ -25,11 +28,6 @@ namespace ClassName
         {
             RemoveTypes();
             RemoveToolMenuItem("Reload C# Resources");
-        }
-
-        public void OnResourceSaved(Resource resource)
-        {
-            BuildTypes();
         }
 
         private void RemoveTypes()
@@ -42,6 +40,7 @@ namespace ClassName
         public void BuildTypes(object ud) => BuildTypes();
         public void BuildTypes()
         {
+
             RemoveTypes(); // Prevent duplicates of the types.
             AddCustomType("Test", "Area2D", null, null);
             _customTypes = new List<string>();
