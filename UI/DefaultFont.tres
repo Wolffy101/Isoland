@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b4g4e0rg5nhai"]
+
+[ext_resource type="Texture2D" uid="uid://b613ij4u14w45" path="res://assets/UI/对话框点9图.9.png" id="1_psc60"]
+
+[resource]
+texture = ExtResource("1_psc60")
+margin_left = 32.0
+margin_top = 33.0
+margin_right = 30.0
+margin_bottom = 23.0
+region_rect = Rect2(0, 0, 143, 132)

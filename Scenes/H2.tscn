@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlt83k7o3v4o5"]
+[gd_scene load_steps=11 format=3 uid="uid://dlt83k7o3v4o5"]
 
-[ext_resource type="PackedScene" uid="uid://dpwdovbrmy5rp" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
+[ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://dyllglolrdl38" path="res://assets/H2/H2.png" id="2_2cdm1"]
+[ext_resource type="Script" path="res://Scenes/H2.cs" id="3_7gki3"]
 [ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_wl5ow"]
+[ext_resource type="Script" path="res://Objects/Interactable.cs" id="4_2skei"]
+[ext_resource type="PackedScene" uid="uid://cg83jdm1yccoh" path="res://UI/DialogBubble.tscn" id="5_swnlx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktosn"]
 radius = 72.0625
@@ -13,8 +16,12 @@ size = Vector2(266, 504)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4jf"]
 size = Vector2(214, 352)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a75t"]
+size = Vector2(241, 601.5)
+
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_2cdm1")
+script = ExtResource("3_7gki3")
 
 [node name="ToH1" type="Area2D" parent="." index="0"]
 position = Vector2(-680, -338)
@@ -42,3 +49,18 @@ _targetPath = "res://Scenes/H3.tscn"
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH3" index="0"]
 position = Vector2(-701, -238)
 shape = SubResource("RectangleShape2D_ev4jf")
+
+[node name="Granny" type="Area2D" parent="." index="3"]
+script = ExtResource("4_2skei")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Granny" index="0"]
+position = Vector2(-348, -45)
+shape = SubResource("RectangleShape2D_0a75t")
+
+[node name="DialogBubble" parent="Granny" index="1" instance=ExtResource("5_swnlx")]
+offset_left = -238.0
+offset_top = 10.0
+offset_right = -238.0
+offset_bottom = 10.0
+
+[connection signal="Interact" from="Granny" to="." method="GrannyInteract"]

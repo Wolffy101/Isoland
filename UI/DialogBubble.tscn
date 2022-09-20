@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg83jdm1yccoh"]
+
+[ext_resource type="FontFile" uid="uid://bll5ii1tvehol" path="res://assets/UI/SourceHanSansCN-Normal.otf" id="1_k637e"]
+[ext_resource type="Script" path="res://UI/DialogBubble.cs" id="1_li4e6"]
+[ext_resource type="StyleBox" uid="uid://b4g4e0rg5nhai" path="res://UI/DefaultFont.tres" id="2_g1ny4"]
+[ext_resource type="Texture2D" uid="uid://fu13vwle7pm8" path="res://assets/UI/对话框把手.png" id="3_v0pkr"]
+
+[node name="DialogBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_li4e6")
+
+[node name="Content" type="Label" parent="."]
+custom_minimum_size = Vector2i(560, 0)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 21.0
+offset_bottom = -21.0
+grow_vertical = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_k637e")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = ExtResource("2_g1ny4")
+text = "中文你好。。。。你好"
+autowrap_mode = 1
+
+[node name="Handle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.025
+anchor_bottom = 0.025
+grow_vertical = 0
+texture = ExtResource("3_v0pkr")
+flip_h = true
+
+[connection signal="gui_input" from="Content" to="." method="BubbleGuiInput"]

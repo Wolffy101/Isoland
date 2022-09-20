@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cp1tiuons2em2"]
 
-[ext_resource type="PackedScene" uid="uid://dpwdovbrmy5rp" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
+[ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://cenlduk5g7ugr" path="res://assets/H4/H4.png" id="2_rr8yc"]
 [ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_7rlu3"]
 
