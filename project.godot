@@ -8,6 +8,12 @@
 
 config_version=5
 
+[RegisteredType]
+
+ClassPrefix=""
+SearchType=0
+ResourceScriptDirectories=["res://"]
+
 [application]
 
 config/name="Isoland"
@@ -29,7 +35,7 @@ project/assembly_name="Isoland"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ClassName/plugin.cfg")
+enabled=PackedStringArray("res://addons/RegisteredType/plugin.cfg")
 
 [input]
 
