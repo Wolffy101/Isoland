@@ -6,21 +6,17 @@ namespace Isoland.Globals;
 /// </summary>
 public partial class SceneChanger : CanvasLayer
 {
-    //Singlton 单类模式
-    private static SceneChanger _current;
-
-
     private static ColorRect _colorRect;
     /// <summary>
     /// 当前类的实列 
     /// </summary>
-    public static SceneChanger Current => _current;
+    public static SceneChanger Singleton { get; private set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        Singleton = this;
         _colorRect = GetNode<ColorRect>("ColorRect");
-        _current = this;
     }
 
 

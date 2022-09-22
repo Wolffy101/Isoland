@@ -1,4 +1,5 @@
 using Godot;
+using Isoland.Globals;
 using Isoland.Items;
 
 namespace Isoland.Objects;
@@ -6,6 +7,7 @@ namespace Isoland.Objects;
 [Tool]
 public partial class SceneItem : Interactable
 {
+    private string Flags => $"picked:{Item.ResourcePath.GetFile()}";
     private Item _item;
 
     [Export]
@@ -19,10 +21,19 @@ public partial class SceneItem : Interactable
             NotifyPropertyListChanged();
         }
     }
-
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint()) return;
+        if (Game.Singleton.Flag.Has(Flags))
+        {
+            QueueFree();
+        }
+    }
     protected async override void InteractInput()
     {
         base.InteractInput();
+        Game.Singleton.Flag.Add(Flags);
+
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back)
              .TweenProperty(this, (string)PropertyName.Scale, Vector2.Zero, 0.15f);
