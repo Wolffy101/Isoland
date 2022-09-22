@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://vr6mnn54k3wi"]
+
+[ext_resource type="Texture2D" uid="uid://c4bf1awmrkhba" path="res://assets/H2/key_prop.png" id="1_3lw7u"]
+[ext_resource type="Script" path="res://Items/Item.cs" id="1_nyd5r"]
+[ext_resource type="Texture2D" uid="uid://bqmryv7dmaipe" path="res://assets/H2/key.png" id="2_k8owq"]
+
+[resource]
+script = ExtResource("1_nyd5r")
+Description = "钥匙"
+PropTexture = ExtResource("1_3lw7u")
+SceneTexture = ExtResource("2_k8owq")

@@ -31,7 +31,7 @@ public partial class DialogBubble : Control
             _content.Text = _dialogs.Current;
             CreateTween().
             SetEase(EaseType.Out).SetTrans(TransitionType.Sine)
-            .TweenProperty(this, "scale", Vector2.One, 0.2f)
+            .TweenProperty(this, (string)PropertyName.Scale, Vector2.One, 0.2f)
             .From(Vector2.Zero);
         }
         else

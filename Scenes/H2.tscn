@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlt83k7o3v4o5"]
+[gd_scene load_steps=16 format=3 uid="uid://dlt83k7o3v4o5"]
 
 [ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://dyllglolrdl38" path="res://assets/H2/H2.png" id="2_2cdm1"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_wl5ow"]
 [ext_resource type="Script" path="res://Objects/Interactable.cs" id="4_2skei"]
 [ext_resource type="PackedScene" uid="uid://cg83jdm1yccoh" path="res://UI/DialogBubble.tscn" id="5_swnlx"]
+[ext_resource type="Script" path="res://Objects/SceneItem.cs" id="7_55shf"]
+[ext_resource type="Resource" uid="uid://vr6mnn54k3wi" path="res://Items/Key.tres" id="8_qkt4i"]
+[ext_resource type="Texture2D" uid="uid://bqmryv7dmaipe" path="res://assets/H2/key.png" id="9_3j85g"]
+[ext_resource type="Resource" uid="uid://hjctpcohedo7" path="res://Items/Mail.tres" id="10_5h6qk"]
+[ext_resource type="Texture2D" uid="uid://dnq7q4ryti10q" path="res://assets/H4/mail_piece.png" id="10_ck8ul"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktosn"]
 radius = 72.0625
@@ -58,9 +63,22 @@ position = Vector2(-348, -45)
 shape = SubResource("RectangleShape2D_0a75t")
 
 [node name="DialogBubble" parent="Granny" index="1" instance=ExtResource("5_swnlx")]
+visible = false
 offset_left = -238.0
 offset_top = 10.0
 offset_right = -238.0
 offset_bottom = 10.0
+
+[node name="Keys" type="Area2D" parent="." index="4"]
+position = Vector2(-68, 117)
+script = ExtResource("7_55shf")
+Item = ExtResource("8_qkt4i")
+Texture = ExtResource("9_3j85g")
+
+[node name="Mail" type="Area2D" parent="." index="5"]
+position = Vector2(103, 121)
+script = ExtResource("7_55shf")
+Item = ExtResource("10_5h6qk")
+Texture = ExtResource("10_ck8ul")
 
 [connection signal="Interact" from="Granny" to="." method="GrannyInteract"]
