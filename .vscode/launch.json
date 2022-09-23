@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Godot Debugger",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -13,6 +13,22 @@
             "args": [
                 "--path",
                 "${workspaceFolder}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Godot(当前场景)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "D:/Program/Godot_v4.0-beta1_mono_win64/Godot_v4.0-beta1_mono_win64.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}",
+                "${fileDirname}/${fileBasenameNoExtension}.tscn"
             ],
             "cwd": "${workspaceFolder}",
             "justMyCode": true,
