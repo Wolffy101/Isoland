@@ -2,6 +2,7 @@ using Godot;
 using Isoland.Constants;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Godot.Tween;
 
 namespace Isoland.UI;
@@ -15,11 +16,11 @@ public partial class DialogBubble : Control
         Hide();
     }
 
-    public void Show(List<string> dialogs)
+    public void ShowDialog(params string[] dialogs)
     {
-        if (_dialogs == null || _dialogs.Current == null)
+        if (_dialogs is null || _dialogs.Current is null)
         {
-            _dialogs = dialogs.GetEnumerator();
+            _dialogs = dialogs.ToList().GetEnumerator();
         }
         Show();
         MoveNext();
@@ -39,7 +40,7 @@ public partial class DialogBubble : Control
             Hide();
         }
     }
-    public void BubbleGuiInput(InputEvent input)
+    private void BubbleGuiInput(InputEvent input)
     {
         if (input.IsActionPressed(InputEventContants.Interact))
         {

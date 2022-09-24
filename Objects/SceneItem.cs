@@ -24,7 +24,7 @@ public partial class SceneItem : Interactable
     public override void _Ready()
     {
         if (Engine.IsEditorHint()) return;
-        if (Game.Singleton.Flag.Has(Flags))
+        if (Game.Flag.Has(Flags))
         {
             QueueFree();
         }
@@ -32,7 +32,8 @@ public partial class SceneItem : Interactable
     protected async override void InteractInput()
     {
         base.InteractInput();
-        Game.Singleton.Flag.Add(Flags);
+        Game.Flag.Add(Flags);
+        Game.Invertory.AddItem(_item);
 
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back)

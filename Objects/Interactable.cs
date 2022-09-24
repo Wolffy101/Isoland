@@ -1,5 +1,6 @@
 using Godot;
 using Isoland.Constants;
+using Isoland.Globals;
 
 namespace Isoland.Objects;
 
@@ -7,6 +8,8 @@ namespace Isoland.Objects;
 [RegisteredType]
 public partial class Interactable : Area2D
 {
+    [Export]
+    private bool _allowItem;
     private Texture2D _texture;
     [Export]
     public Texture2D Texture
@@ -48,6 +51,10 @@ public partial class Interactable : Area2D
     public override void _InputEvent(Viewport viewport, InputEvent @event, long shapeIdx)
     {
         if (!@event.IsActionPressed(InputEventContants.Interact))
+        {
+            return;
+        }
+        if (!_allowItem && Game.Invertory.ActiveItem is not null)
         {
             return;
         }

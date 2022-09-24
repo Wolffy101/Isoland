@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqeq2if2vsqy"]
+
+[ext_resource type="PackedScene" uid="uid://cp5vbcs0wjfvy" path="res://UI/Invertory.tscn" id="1_f3n6i"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Invertory" parent="." instance=ExtResource("1_f3n6i")]

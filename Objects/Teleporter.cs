@@ -11,6 +11,6 @@ public partial class Teleporter : Interactable
     protected override void InteractInput()
     {
         base.InteractInput();
-        SceneChanger.Singleton.ChangeSceneToFile(_targetPath);
+        SceneChanger.ChangeSceneToFile(_targetPath);
     }
 }
