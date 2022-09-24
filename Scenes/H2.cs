@@ -18,15 +18,15 @@ public partial class H2 : Scene
     {
         const string mailFlag = "mail_accepted";
         var item = Game.Invertory.ActiveItem;
-        if (item is not null && !Game.Flag.Has(mailFlag))
+        if (item is not null && !Game.Flags.Has(mailFlag))
         {
             if (item == GD.Load<Item>("Items/Mail.tres"))
             {
-                Game.Flag.Add(mailFlag);
+                Game.Flags.Add(mailFlag);
                 Game.Invertory.RemoveItem(item);
             }
         }
-        if (Game.Flag.Has(mailFlag))
+        if (Game.Flags.Has(mailFlag))
         {
             _dialogBubble.ShowDialog("没想到老头子的船票寄过来了，谢谢你。");
         }

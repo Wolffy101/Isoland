@@ -91,7 +91,7 @@ public partial class Game : Node
     private static Game Singleton;
     
     private Invertory _invertory;
-    public static Flags Flag => Singleton._flags;
+    public static Flags Flags=> Singleton._flags;
     public static Invertory Invertory => Singleton._invertory;
 
     // Called when the node enters the scene tree for the first time.
