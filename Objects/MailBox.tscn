@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://ynjqtkd8cxdu"]
+
+[ext_resource type="Script" path="res://Objects/MailBox.cs" id="1_2g6r2"]
+[ext_resource type="Texture2D" uid="uid://cjfgtiglj50b2" path="res://assets/H4/mailBox_close.png" id="2_3kn5u"]
+[ext_resource type="Script" path="res://Objects/Interactable.cs" id="3_utp2s"]
+[ext_resource type="Texture2D" uid="uid://cy4mbjehav0gt" path="res://assets/H4/mailBox_open.png" id="4_05t8u"]
+[ext_resource type="Script" path="res://Objects/SceneItem.cs" id="5_pckm2"]
+[ext_resource type="Resource" uid="uid://hjctpcohedo7" path="res://Items/Mail.tres" id="6_0dy83"]
+[ext_resource type="Texture2D" uid="uid://dnq7q4ryti10q" path="res://assets/H4/mail_piece.png" id="7_fcopn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fydc"]
+size = Vector2(157, 226)
+
+[node name="MainBox" type="Node2D"]
+script = ExtResource("1_2g6r2")
+
+[node name="MailBoxClose" type="Sprite2D" parent="."]
+position = Vector2(3, -323)
+texture = ExtResource("2_3kn5u")
+
+[node name="Interactable" type="Area2D" parent="MailBoxClose"]
+position = Vector2(-126, -188)
+script = ExtResource("3_utp2s")
+_allowItem = true
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="MailBoxClose/Interactable"]
+position = Vector2(4, -8)
+shape = SubResource("RectangleShape2D_7fydc")
+
+[node name="MailBoxOpen" type="Sprite2D" parent="."]
+position = Vector2(-38, -325)
+texture = ExtResource("4_05t8u")
+
+[node name="SceneItem" type="Area2D" parent="MailBoxOpen"]
+position = Vector2(-46, -196)
+script = ExtResource("5_pckm2")
+Item = ExtResource("6_0dy83")
+Texture = ExtResource("7_fcopn")
+metadata/_edit_lock_ = true
+
+[connection signal="Interact" from="MailBoxClose/Interactable" to="." method="OnInteractableInteract"]

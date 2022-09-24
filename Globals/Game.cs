@@ -38,7 +38,7 @@ public partial class Invertory : Node
         {
             _item.Add(item);
             _index = Count - 1;
-            EmitSignal(SignalName.Change);
+            EmitChangeSignal();
         }
     }
 
