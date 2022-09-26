@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ddc6836cew8k4"]
+
+[ext_resource type="Script" path="res://MiniGame/H2AConfig.cs" id="1_ka2j1"]
+
+[resource]
+script = ExtResource("1_ka2j1")
+_placements = [0, 0, 2, 3, 4, 6, 6]
+_collections = {
+0: [0, 1, 2],
+1: [0, 2, 4],
+2: [0, 1, 4],
+3: [4],
+4: [1, 2, 3],
+5: [],
+6: []
+}
