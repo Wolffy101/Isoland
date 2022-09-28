@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Isoland.MiniGame;
@@ -28,7 +29,11 @@ public partial class H2AConfig : Resource
     }
     private int _flags;
     private Array<Slot> _placements;
+    public IReadOnlyList<Slot> Placements => _placements;
+
     private Dictionary _collections;
+    public Dictionary Collections => _collections;
+
 
     public H2AConfig()
     {

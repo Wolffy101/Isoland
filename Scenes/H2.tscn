@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlt83k7o3v4o5"]
+[gd_scene load_steps=15 format=3 uid="uid://dlt83k7o3v4o5"]
 
 [ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://dyllglolrdl38" path="res://assets/H2/H2.png" id="2_2cdm1"]
@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://Objects/Interactable.cs" id="4_2skei"]
 [ext_resource type="PackedScene" uid="uid://cg83jdm1yccoh" path="res://UI/DialogBubble.tscn" id="5_swnlx"]
 [ext_resource type="Script" path="res://Objects/SceneItem.cs" id="7_55shf"]
-[ext_resource type="Resource" uid="uid://vr6mnn54k3wi" path="res://Items/Key.tres" id="8_qkt4i"]
 [ext_resource type="Texture2D" uid="uid://bqmryv7dmaipe" path="res://assets/H2/key.png" id="9_3j85g"]
+[ext_resource type="Script" path="res://Globals/FlagSwitch.cs" id="10_m4hp6"]
+[ext_resource type="Texture2D" uid="uid://6rubk8660dgl" path="res://assets/H2/door.png" id="11_1md45"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktosn"]
 radius = 72.0625
@@ -16,11 +17,11 @@ radius = 72.0625
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qh5f8"]
 size = Vector2(266, 504)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4jf"]
-size = Vector2(214, 352)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0a75t"]
 size = Vector2(241, 601.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev4jf"]
+size = Vector2(214, 352)
 
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_2cdm1")
@@ -29,7 +30,7 @@ script = ExtResource("3_7gki3")
 [node name="ToH1" type="Area2D" parent="." index="0"]
 position = Vector2(-680, -338)
 script = ExtResource("3_wl5ow")
-_targetPath = "res://Scenes/H1.tscn"
+_targetPath = ""
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH1" index="0"]
 position = Vector2(8, 10)
@@ -38,22 +39,13 @@ shape = SubResource("CircleShape2D_ktosn")
 [node name="ToH4" type="Area2D" parent="." index="1"]
 position = Vector2(740, 18)
 script = ExtResource("3_wl5ow")
-_targetPath = "res://Scenes/H4.tscn"
+_targetPath = ""
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH4" index="0"]
 position = Vector2(85, -68)
 shape = SubResource("RectangleShape2D_qh5f8")
 
-[node name="ToH3" type="Area2D" parent="." index="2"]
-position = Vector2(740, 18)
-script = ExtResource("3_wl5ow")
-_targetPath = "res://Scenes/H3.tscn"
-
-[node name="CollisionShape2d" type="CollisionShape2D" parent="ToH3" index="0"]
-position = Vector2(-701, -238)
-shape = SubResource("RectangleShape2D_ev4jf")
-
-[node name="Granny" type="Area2D" parent="." index="3"]
+[node name="Granny" type="Area2D" parent="." index="2"]
 script = ExtResource("4_2skei")
 _allowItem = true
 
@@ -68,10 +60,29 @@ offset_top = 10.0
 offset_right = -238.0
 offset_bottom = 10.0
 
-[node name="Keys" type="Area2D" parent="." index="4"]
+[node name="Keys" type="Area2D" parent="." index="3"]
 position = Vector2(75, 463)
 script = ExtResource("7_55shf")
-Item = ExtResource("8_qkt4i")
 Texture = ExtResource("9_3j85g")
+
+[node name="FlagSwitch" type="Node2D" parent="." index="4"]
+script = ExtResource("10_m4hp6")
+Flag = "h2a_unlocked"
+
+[node name="ToH2A" type="Area2D" parent="FlagSwitch" index="0"]
+visible = false
+position = Vector2(18, -208)
+script = ExtResource("3_wl5ow")
+_targetPath = ""
+Texture = ExtResource("11_1md45")
+
+[node name="ToH3" type="Area2D" parent="FlagSwitch" index="1"]
+position = Vector2(740, 18)
+script = ExtResource("3_wl5ow")
+_targetPath = "res://Scenes/H3.tscn"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="FlagSwitch/ToH3" index="0"]
+position = Vector2(-705, -238)
+shape = SubResource("RectangleShape2D_ev4jf")
 
 [connection signal="Interact" from="Granny" to="." method="GrannyInteract"]

@@ -2,7 +2,8 @@ using Godot;
 using Isoland.Globals;
 
 namespace Isoland.Objects;
-
+[Tool]
+[RegisteredType]
 public partial class Teleporter : Interactable
 {
 

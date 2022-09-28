@@ -1,20 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5xkkmjvvxow3"]
+[gd_scene load_steps=11 format=3 uid="uid://b5xkkmjvvxow3"]
 
 [ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://efm7lwkqmney" path="res://assets/H2A/roomsignBG.png" id="2_0r3ap"]
+[ext_resource type="Script" path="res://Scenes/H2A.cs" id="3_btaeq"]
 [ext_resource type="Script" path="res://Objects/Teleporter.cs" id="3_cxlkl"]
+[ext_resource type="Script" path="res://MiniGame/H2ABoard.cs" id="4_nos4m"]
+[ext_resource type="Resource" uid="uid://ddc6836cew8k4" path="res://MiniGame/easy.tres" id="5_nua8n"]
+[ext_resource type="Script" path="res://Objects/Interactable.cs" id="7_ucxbe"]
+[ext_resource type="Texture2D" uid="uid://rqb3hl27x7if" path="res://assets/H2A/gearbg.png" id="8_f02c1"]
+[ext_resource type="Texture2D" uid="uid://boktpnuya4bim" path="res://assets/H2A/gear.png" id="9_3twha"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gh373"]
 radius = 72.0625
 
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_0r3ap")
+script = ExtResource("3_btaeq")
 
 [node name="ToH2" type="Area2D" parent="." index="0"]
 position = Vector2(-812, -440)
 script = ExtResource("3_cxlkl")
-_targetPath = "res://Scenes/H2.tscn"
+_targetPath = ""
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH2" index="0"]
 position = Vector2(8, 10)
 shape = SubResource("CircleShape2D_gh373")
+
+[node name="Board" type="Node2D" parent="." index="1"]
+position = Vector2(-42, 14)
+script = ExtResource("4_nos4m")
+Radius = 350.0
+Config = ExtResource("5_nua8n")
+
+[node name="Reset" type="Area2D" parent="." index="2"]
+position = Vector2(670, -381)
+script = ExtResource("7_ucxbe")
+Texture = ExtResource("8_f02c1")
+
+[node name="Gear" type="Sprite2D" parent="Reset" index="2"]
+texture = ExtResource("9_3twha")
+
+[connection signal="Interact" from="Reset" to="." method="OnResetInteract"]
