@@ -37,11 +37,11 @@ public partial class SceneChanger : CanvasLayer
     public static void ChangeSceneToFile(string path)
     {
         var tween = Singleton.CreateTween();
-        tween.TweenCallback(ColorRect.Show);
+        tween.TweenCallback(new Callable(ColorRect.Show));
         tween.TweenProperty(ColorRect, "color:a", 1.0f, 0.2f);
         tween.TweenCallback(new Callable(() => Singleton.ChangeScene(path)));
         tween.TweenProperty(ColorRect, "color:a", 0f, 0.3f);
-        tween.TweenCallback(ColorRect.Hide);
+        tween.TweenCallback(new Callable(ColorRect.Hide));
     }
     private void ChangeScene(string path)
     {

@@ -95,7 +95,7 @@ public partial class Invertory : VBoxContainer
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
         tween.TweenProperty(_label, $"{Sprite2D.PropertyName.Modulate}:{nameof(Color.a)}", 1.0, 0.2f);
-        tween.TweenCallback(() => _timer.Start());
+        tween.TweenCallback(new Callable(() => _timer.Start()));
     }
 
 
