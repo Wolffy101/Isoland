@@ -89,9 +89,9 @@ public partial class Game : Node
 {
     private Flags _flags;
     private static Game Singleton;
-    
+
     private Invertory _invertory;
-    public static Flags Flags=> Singleton._flags;
+    public static Flags Flags => Singleton._flags;
     public static Invertory Invertory => Singleton._invertory;
 
     // Called when the node enters the scene tree for the first time.
@@ -100,5 +100,10 @@ public partial class Game : Node
         Singleton = this;
         _flags = new();
         _invertory = new();
+    }
+
+    internal static void BackToTitle()
+    {
+        SceneChanger.ChangeSceneToFile("res://UI/TitleScreen.tscn");
     }
 }
