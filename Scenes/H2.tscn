@@ -31,7 +31,7 @@ script = ExtResource("3_7gki3")
 [node name="ToH1" type="Area2D" parent="." index="0"]
 position = Vector2(-680, -338)
 script = ExtResource("3_wl5ow")
-_targetPath = ""
+_targetPath = "res://Scenes/H1.tscn"
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH1" index="0"]
 position = Vector2(8, 10)
@@ -40,7 +40,7 @@ shape = SubResource("CircleShape2D_ktosn")
 [node name="ToH4" type="Area2D" parent="." index="1"]
 position = Vector2(740, 18)
 script = ExtResource("3_wl5ow")
-_targetPath = ""
+_targetPath = "res://Scenes/H4.tscn"
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH4" index="0"]
 position = Vector2(85, -68)
