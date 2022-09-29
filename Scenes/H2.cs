@@ -2,8 +2,6 @@ using Godot;
 using Isoland.Globals;
 using Isoland.Items;
 using Isoland.UI;
-using System;
-using System.Collections.Generic;
 
 namespace Isoland.Scenes;
 public partial class H2 : Scene

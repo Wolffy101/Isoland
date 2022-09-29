@@ -11,16 +11,32 @@ namespace Isoland.Globals;
 public partial class Flags : Node
 {
     [Signal]
-    public delegate void ChangeEventHandler(string flag);
+    public delegate void ChangeEventHandler();
     private readonly HashSet<string> _flags = new();
     public void Add(string flag)
     {
         if (_flags.Add(flag))
         {
-            EmitSignal(SignalName.Change, flag);
+            EmitChangeSignal();
         }
     }
+    private void EmitChangeSignal() => EmitSignal(SignalName.Change);
     public bool Has(string flag) => _flags.Contains(flag);
+
+    public IEnumerable<string> SaveData
+    {
+        get => _flags;
+        set
+        {
+            _flags.Clear();
+            foreach (var item in value)
+            {
+                _flags.Add(item);
+            }
+            EmitChangeSignal();
+        }
+    }
+    public void Reset() => _flags.Clear();
 }
 public partial class Invertory : Node
 {
@@ -57,6 +73,27 @@ public partial class Invertory : Node
         }
     }
 
+    public (IEnumerable<string> item, int index) SaveData
+    {
+
+        get => (_item.Select(p => p.ResourcePath), _index);
+        set
+        {
+            _index = value.index;
+            _item.Clear();
+            foreach (var item in value.item)
+            {
+                _item.Add(GD.Load<Item>(item));
+            }
+            EmitChangeSignal();
+        }
+    }
+    public void Reset()
+    {
+        _index = -1;
+        _item.Clear();
+        EmitChangeSignal();
+    }
     private void EmitChangeSignal() => EmitSignal(SignalName.Change);
     public void Next()
     {
@@ -87,6 +124,17 @@ public partial class Invertory : Node
 }
 public partial class Game : Node
 {
+
+    public class Data
+    {
+        public IEnumerable<string> Items { get; set; }
+        public int ItemIndex { get; set; }
+
+        public IEnumerable<string> Flags { get; set; }
+
+        public string CurrentScene { get; set; }
+    }
+    private const string SavePath = "user://data.sav";
     private Flags _flags;
     private static Game Singleton;
 
@@ -101,9 +149,47 @@ public partial class Game : Node
         _flags = new();
         _invertory = new();
     }
-
+    public static void SaveGame()
+    {
+        using var file = new File();
+        if (file.Open(SavePath, File.ModeFlags.Write) != Error.Ok)
+        {
+            return;
+        }
+        var (items, index) = Invertory.SaveData;
+        var data = new Data
+        {
+            Items = items,
+            ItemIndex = index,
+            Flags = Flags.SaveData,
+            CurrentScene = Singleton.GetTree().CurrentScene.SceneFilePath,
+        };
+        var json = System.Text.Json.JsonSerializer.Serialize(data);
+        file.StoreString(json);
+    }
+    public static void LoadGame()
+    {
+        using var file = new File();
+        if (file.Open(SavePath, File.ModeFlags.Read) != Error.Ok)
+        {
+            return;
+        }
+        var json = file.GetAsText();
+        var data = System.Text.Json.JsonSerializer.Deserialize<Data>(json);
+        Invertory.SaveData = (data.Items, data.ItemIndex);
+        Flags.SaveData = data.Flags;
+        SceneChanger.ChangeSceneToFile(data.CurrentScene);
+    }
+    public static void NewGame()
+    {
+        Invertory.Reset();
+        Flags.Reset();
+        SceneChanger.ChangeSceneToFile("res://Scenes/H1.tscn");
+    }
+    public static bool HasSaveFile => File.FileExists(SavePath);
     internal static void BackToTitle()
     {
+        SaveGame();
         SceneChanger.ChangeSceneToFile("res://UI/TitleScreen.tscn");
     }
 }

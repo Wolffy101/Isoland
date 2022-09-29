@@ -17,7 +17,7 @@ ResourceScriptDirectories=["res://"]
 [application]
 
 config/name="Isoland"
-run/main_scene="res://scenes/H1.tscn"
+run/main_scene="res://UI/TitleScreen.tscn"
 config/features=PackedStringArray("4.0", "C#", "Vulkan Clustered")
 config/icon="res://icon.svg"
 

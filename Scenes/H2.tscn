@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlt83k7o3v4o5"]
+[gd_scene load_steps=16 format=3 uid="uid://dlt83k7o3v4o5"]
 
 [ext_resource type="PackedScene" uid="uid://tetwtjxd26vk" path="res://Scenes/Scene.tscn" id="1_fnjs5"]
 [ext_resource type="Texture2D" uid="uid://dyllglolrdl38" path="res://assets/H2/H2.png" id="2_2cdm1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Objects/Interactable.cs" id="4_2skei"]
 [ext_resource type="PackedScene" uid="uid://cg83jdm1yccoh" path="res://UI/DialogBubble.tscn" id="5_swnlx"]
 [ext_resource type="Script" path="res://Objects/SceneItem.cs" id="7_55shf"]
+[ext_resource type="Resource" uid="uid://vr6mnn54k3wi" path="res://Items/Key.tres" id="8_qkt4i"]
 [ext_resource type="Texture2D" uid="uid://bqmryv7dmaipe" path="res://assets/H2/key.png" id="9_3j85g"]
 [ext_resource type="Script" path="res://Globals/FlagSwitch.cs" id="10_m4hp6"]
 [ext_resource type="Texture2D" uid="uid://6rubk8660dgl" path="res://assets/H2/door.png" id="11_1md45"]
@@ -63,6 +64,7 @@ offset_bottom = 10.0
 [node name="Keys" type="Area2D" parent="." index="3"]
 position = Vector2(75, 463)
 script = ExtResource("7_55shf")
+Item = ExtResource("8_qkt4i")
 Texture = ExtResource("9_3j85g")
 
 [node name="FlagSwitch" type="Node2D" parent="." index="4"]

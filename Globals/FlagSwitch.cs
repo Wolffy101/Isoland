@@ -31,7 +31,7 @@ public partial class FlagSwitch : Node2D
         _defaultNode = GetChildOrNull<Node2D>(0);
         _swtichNode = GetChildOrNull<Node2D>(1);
 
-        Game.Flags.Change += flag => UpdateNode();
+        Game.Flags.Change += () => UpdateNode();
         UpdateNode();
     }
 
