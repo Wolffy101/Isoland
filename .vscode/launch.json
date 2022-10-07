@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "D:/Program/Godot_v4.0-beta1_mono_win64/Godot_v4.0-beta1_mono_win64.exe",
+            "program": "D:/Program/Godot_v4.0/Godot_v4.0-beta2_mono_win64.exe",
             "args": [
                 "--path",
                 "${workspaceFolder}"
@@ -24,7 +24,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "D:/Program/Godot_v4.0-beta1_mono_win64/Godot_v4.0-beta1_mono_win64.exe",
+            "program": "D:/Program/Godot_v4.0/Godot_v4.0-beta2_mono_win64.exe",
             "args": [
                 "--path",
                 "${workspaceFolder}",

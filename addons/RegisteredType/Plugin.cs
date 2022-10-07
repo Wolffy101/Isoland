@@ -76,7 +76,7 @@ public partial class Plugin : EditorPlugin
     {
         var attribute = type.GetCustomAttribute<RegisteredTypeAttribute>(true);
         String path = FindClassPath(type);
-        if (path == null && File.FileExists(path))
+        if (path == null && FileAccess.FileExists(path))
             return;
 
         Script script = GD.Load<Script>(path);
@@ -104,7 +104,7 @@ public partial class Plugin : EditorPlugin
 
         if (iconPath != "")
         {
-            if (File.FileExists(iconPath))
+            if (FileAccess.FileExists(iconPath))
             {
                 Texture2D rawIcon = ResourceLoader.Load<Texture2D>(iconPath);
                 if (rawIcon != null)
@@ -146,7 +146,7 @@ public partial class Plugin : EditorPlugin
         {
             string filePath = $"{dir}/{type.Namespace?.Replace(".", "/") ?? ""}/{type.Name}.cs";
 
-            if (File.FileExists(filePath))
+            if (FileAccess.FileExists(filePath))
                 return filePath;
         }
         return null;
@@ -165,33 +165,33 @@ public partial class Plugin : EditorPlugin
 
     private static string FindClassPathRecursiveHelper(Type type, string directory)
     {
-        Directory dir = new Directory();
-
-        if (dir.Open(directory) == Error.Ok)
+        if (!DirAccess.DirExistsAbsolute(directory))
         {
-            dir.ListDirBegin();
+            return null;
+        }
+        var dir = DirAccess.Open(directory);
+        dir.ListDirBegin();
 
-            while (true)
+        while (true)
+        {
+            var fileOrDirName = dir.GetNext();
+
+            // Skips hidden files like .
+            if (fileOrDirName == "")
+                break;
+            else if (fileOrDirName.BeginsWith("."))
+                continue;
+            else if (dir.CurrentIsDir())
             {
-                var fileOrDirName = dir.GetNext();
-
-                // Skips hidden files like .
-                if (fileOrDirName == "")
-                    break;
-                else if (fileOrDirName.BeginsWith("."))
-                    continue;
-                else if (dir.CurrentIsDir())
+                string foundFilePath = FindClassPathRecursiveHelper(type, dir.GetCurrentDir() + "/" + fileOrDirName);
+                if (foundFilePath != null)
                 {
-                    string foundFilePath = FindClassPathRecursiveHelper(type, dir.GetCurrentDir() + "/" + fileOrDirName);
-                    if (foundFilePath != null)
-                    {
-                        dir.ListDirEnd();
-                        return foundFilePath;
-                    }
+                    dir.ListDirEnd();
+                    return foundFilePath;
                 }
-                else if (fileOrDirName == $"{type.Name}.cs")
-                    return dir.GetCurrentDir() + "/" + fileOrDirName;
             }
+            else if (fileOrDirName == $"{type.Name}.cs")
+                return dir.GetCurrentDir() + "/" + fileOrDirName;
         }
         return null;
     }

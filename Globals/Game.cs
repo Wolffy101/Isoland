@@ -3,7 +3,6 @@ using Isoland.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace Isoland.Globals;
 
 
@@ -151,11 +150,8 @@ public partial class Game : Node
     }
     public static void SaveGame()
     {
-        using var file = new File();
-        if (file.Open(SavePath, File.ModeFlags.Write) != Error.Ok)
-        {
-            return;
-        }
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
+
         var (items, index) = Invertory.SaveData;
         var data = new Data
         {
@@ -169,11 +165,11 @@ public partial class Game : Node
     }
     public static void LoadGame()
     {
-        using var file = new File();
-        if (file.Open(SavePath, File.ModeFlags.Read) != Error.Ok)
+        if (!FileAccess.FileExists(SavePath))
         {
             return;
         }
+        using var file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Read);
         var json = file.GetAsText();
         var data = System.Text.Json.JsonSerializer.Deserialize<Data>(json);
         Invertory.SaveData = (data.Items, data.ItemIndex);
@@ -186,7 +182,7 @@ public partial class Game : Node
         Flags.Reset();
         SceneChanger.ChangeSceneToFile("res://Scenes/H1.tscn");
     }
-    public static bool HasSaveFile => File.FileExists(SavePath);
+    public static bool HasSaveFile => FileAccess.FileExists(SavePath);
     internal static void BackToTitle()
     {
         SaveGame();
