@@ -24,6 +24,6 @@ public partial class H2A : Scene
         tween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
 
         tween.TweenProperty(_gear, (string)Sprite2D.PropertyName.Rotation, 360, 0.2f).AsRelative();
-        tween.TweenCallback(new Callable(_h2ABoard.Reset));
+        tween.TweenCallback(Callable.From(_h2ABoard.Reset));
     }
 }

@@ -8,6 +8,10 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -389.0
+offset_top = -348.0
+offset_right = 379.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_14yhq")
@@ -27,22 +31,14 @@ theme_override_constants/separation = 30
 
 [node name="New" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_right = 178.0
-offset_bottom = 83.0
 text = "新 游 戏"
 
 [node name="Load" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_top = 113.0
-offset_right = 178.0
-offset_bottom = 196.0
 text = "加 载"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_top = 226.0
-offset_right = 178.0
-offset_bottom = 309.0
 text = "退出"
 
 [connection signal="pressed" from="VBoxContainer/New" to="." method="OnNewPressed"]

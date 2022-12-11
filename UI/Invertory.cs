@@ -61,7 +61,7 @@ public partial class Invertory : VBoxContainer
             _handOuter.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine).SetParallel();
             _handOuter.TweenProperty(_hand, (string)Sprite2D.PropertyName.Scale, Vector2.One * 3, 0.15f);
             _handOuter.TweenProperty(_hand, $"{Sprite2D.PropertyName.Modulate}:{nameof(Color.a)}", 0f, 0.15f);
-            _handOuter.Chain().TweenCallback((Delegate)_hand.Hide);
+            _handOuter.Chain().TweenCallback(Callable.From(_hand.Hide));
         }
     }
     private void UpdateUi(bool isInit = false)
@@ -95,7 +95,7 @@ public partial class Invertory : VBoxContainer
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
         tween.TweenProperty(_label, $"{Sprite2D.PropertyName.Modulate}:{nameof(Color.a)}", 1.0, 0.2f);
-        tween.TweenCallback(new Callable(() => _timer.Start()));
+        tween.TweenCallback(Callable.From(() => _timer.Start()));
     }
 
 
@@ -123,7 +123,7 @@ public partial class Invertory : VBoxContainer
         _labelOuter = CreateTween();
         _labelOuter.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
         _labelOuter.TweenProperty(_label, $"{Sprite2D.PropertyName.Modulate}:{nameof(Color.a)}", 0.0, 0.2f);
-        _labelOuter.TweenCallback((Delegate)_label.Hide);
+        _labelOuter.TweenCallback(Callable.From(_label.Hide));
     }
     #endregion
 }

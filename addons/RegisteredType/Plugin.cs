@@ -17,13 +17,15 @@ public partial class Plugin : EditorPlugin
     // and we can't be sure how long that is. I guess we have to leave refreshing to the user for now.
     // There isn't any automation we can do to fix that.
     // private Button MonoBuildButton => GetNode<Button>("/root/EditorNode/@@580/@@581/@@589/@@590/ToolButton");
-    private readonly List<string> customTypes = new List<string>();
+    private readonly List<string> customTypes = new();
     private Button refreshButton;
 
     public override void _EnterTree()
     {
-        refreshButton = new Button();
-        refreshButton.Text = "CCR";
+        refreshButton = new Button
+        {
+            Text = "CCR"
+        };
 
         AddControlToContainer(CustomControlContainer.Toolbar, refreshButton);
         refreshButton.Icon = refreshButton.Icon;
@@ -129,15 +131,12 @@ public partial class Plugin : EditorPlugin
 
     private static string FindClassPath(Type type)
     {
-        switch (Settings.SearchType)
+        return Settings.SearchType switch
         {
-            case Settings.ResourceSearchType.Recursive:
-                return FindClassPathRecursive(type);
-            case Settings.ResourceSearchType.Namespace:
-                return FindClassPathNamespace(type);
-            default:
-                throw new Exception($"ResourceSearchType {Settings.SearchType} not implemented!");
-        }
+            Settings.ResourceSearchType.Recursive => FindClassPathRecursive(type),
+            Settings.ResourceSearchType.Namespace => FindClassPathNamespace(type),
+            _ => throw new Exception($"ResourceSearchType {Settings.SearchType} not implemented!"),
+        };
     }
 
     private static string FindClassPathNamespace(Type type)
@@ -179,7 +178,7 @@ public partial class Plugin : EditorPlugin
             // Skips hidden files like .
             if (fileOrDirName == "")
                 break;
-            else if (fileOrDirName.BeginsWith("."))
+            else if (fileOrDirName.StartsWith("."))
                 continue;
             else if (dir.CurrentIsDir())
             {

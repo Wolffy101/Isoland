@@ -32,12 +32,12 @@ public partial class H2ABoard : Node2D
         get { return _config; }
         set
         {
-            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), new Callable(UpdateBoard)))
+            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), Callable.From(UpdateBoard)))
                 _config.Changed -= UpdateBoard;
 
             _config = value;
 
-            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), new Callable(UpdateBoard)))
+            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), Callable.From(UpdateBoard)))
                 _config.Changed += UpdateBoard;
             UpdateBoard();
         }
@@ -120,9 +120,9 @@ public partial class H2ABoard : Node2D
         var tween = CreateTween();
 
         tween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(stone, (string)H2AStone.PropertyName.Position, SlotPosition(slot), 0.2f);
+        tween.TweenProperty(stone, (string)Node2D.PropertyName.Position, SlotPosition(slot), 0.2f);
         tween.TweenInterval(1f);
-        tween.TweenCallback(new Callable(Check));
+        tween.TweenCallback(Callable.From(Check));
     }
     private void Check()
     {
