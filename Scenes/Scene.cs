@@ -8,7 +8,7 @@ public partial class Scene : Sprite2D
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.Out)
              .SetTrans(Tween.TransitionType.Sine)
-             .TweenProperty(this, (string)PropertyName.Scale, Vector2.One, 0.3f)
+             .TweenProperty(this, (string)PropertyName.Scale, Vector2.One, 0.3)
              .From(Vector2.One * 1.05f);
 
     }

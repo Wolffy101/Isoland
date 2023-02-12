@@ -120,8 +120,8 @@ public partial class H2ABoard : Node2D
         var tween = CreateTween();
 
         tween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Sine);
-        tween.TweenProperty(stone, (string)Node2D.PropertyName.Position, SlotPosition(slot), 0.2f);
-        tween.TweenInterval(1f);
+        tween.TweenProperty(stone, (string)Node2D.PropertyName.Position, SlotPosition(slot), 0.2);
+        tween.TweenInterval(1);
         tween.TweenCallback(Callable.From(Check));
     }
     private void Check()

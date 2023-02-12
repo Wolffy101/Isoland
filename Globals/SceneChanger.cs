@@ -38,9 +38,9 @@ public partial class SceneChanger : CanvasLayer
     {
         var tween = Singleton.CreateTween();
         tween.TweenCallback(Callable.From(ColorRect.Show));
-        tween.TweenProperty(ColorRect, "color:a", 1.0f, 0.2f);
+        tween.TweenProperty(ColorRect, "color:a", 1.0, 0.2);
         tween.TweenCallback(Callable.From(() => Singleton.ChangeScene(path)));
-        tween.TweenProperty(ColorRect, "color:a", 0f, 0.3f);
+        tween.TweenProperty(ColorRect, "color:a", 0, 0.3);
         tween.TweenCallback(Callable.From(ColorRect.Hide));
     }
     private void ChangeScene(string path)

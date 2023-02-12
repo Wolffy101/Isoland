@@ -37,7 +37,7 @@ public partial class SceneItem : Interactable
 
         var tween = CreateTween();
         tween.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back)
-             .TweenProperty(this, (string)PropertyName.Scale, Vector2.Zero, 0.15f);
+             .TweenProperty(this, (string)PropertyName.Scale, Vector2.Zero, 0.15);
         await ToSignal(tween, Tween.SignalName.Finished);
         QueueFree();
     }
