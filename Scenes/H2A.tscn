@@ -20,7 +20,7 @@ script = ExtResource("3_btaeq")
 [node name="ToH2" type="Area2D" parent="." index="0"]
 position = Vector2(-812, -440)
 script = ExtResource("3_cxlkl")
-_targetPath = ""
+_targetPath = "res://Scenes/H2.tscn"
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ToH2" index="0"]
 position = Vector2(8, 10)
@@ -37,7 +37,7 @@ position = Vector2(670, -381)
 script = ExtResource("7_ucxbe")
 Texture = ExtResource("8_f02c1")
 
-[node name="Gear" type="Sprite2D" parent="Reset" index="2"]
+[node name="Gear" type="Sprite2D" parent="Reset" index="0"]
 texture = ExtResource("9_3twha")
 
 [connection signal="Interact" from="Reset" to="." method="OnResetInteract"]

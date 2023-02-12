@@ -32,12 +32,12 @@ public partial class H2ABoard : Node2D
         get { return _config; }
         set
         {
-            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), Callable.From(UpdateBoard)))
+            if (_config is not null && !_config.IsConnected(Resource.SignalName.Changed, Callable.From(UpdateBoard)))
                 _config.Changed -= UpdateBoard;
 
             _config = value;
 
-            if (_config is not null && !_config.IsConnected(nameof(UpdateBoard), Callable.From(UpdateBoard)))
+            if (_config is not null && !_config.IsConnected(Resource.SignalName.Changed, Callable.From(UpdateBoard)))
                 _config.Changed += UpdateBoard;
             UpdateBoard();
         }
@@ -73,7 +73,7 @@ public partial class H2ABoard : Node2D
             {
                 var line = new Line2D()
                 {
-                    Width = LineTexture.GetSize().y,
+                    Width = LineTexture.GetSize().Y,
                     Texture = LineTexture,
                     TextureMode = Line2D.LineTextureMode.Tile,
                     DefaultColor = Colors.White,

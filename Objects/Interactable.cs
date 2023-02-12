@@ -6,6 +6,7 @@ namespace Isoland.Objects;
 
 [Tool]
 [RegisteredType]
+[GodotClassName(nameof(Interactable))]
 public partial class Interactable : Area2D
 {
     [Export]
@@ -48,7 +49,8 @@ public partial class Interactable : Area2D
     }
     [Signal]
     public delegate void InteractEventHandler();
-    public override void _InputEvent(Viewport viewport, InputEvent @event, long shapeIdx)
+
+    public override void _InputEvent(Viewport viewport, InputEvent @event, int shapeIdx)
     {
         if (!@event.IsActionPressed(InputEventContants.Interact))
         {
