@@ -5,8 +5,6 @@ using Isoland.Globals;
 namespace Isoland.Objects;
 
 [Tool]
-[RegisteredType]
-[GodotClassName(nameof(Interactable))]
 public partial class Interactable : Area2D
 {
     [Export]

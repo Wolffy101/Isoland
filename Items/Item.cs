@@ -1,7 +1,6 @@
 using Godot;
 namespace Isoland.Items;
 
-[RegisteredType]
 [Tool]
 public partial class Item : Resource
 {

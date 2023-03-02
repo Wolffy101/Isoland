@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/抓着道具的手.png-52c42f5244e026c614d0b1
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

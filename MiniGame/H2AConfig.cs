@@ -7,7 +7,6 @@ using System.Linq;
 namespace Isoland.MiniGame;
 
 [Tool]
-[RegisteredType]
 public partial class H2AConfig : Resource
 {
     public enum Slot : int

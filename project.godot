@@ -37,7 +37,7 @@ project/assembly_name="Isoland"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/RegisteredType/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

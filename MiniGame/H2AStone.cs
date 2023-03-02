@@ -4,7 +4,6 @@ using System;
 namespace Isoland.MiniGame;
 
 [Tool]
-[RegisteredType]
 public partial class H2AStone : Interactable
 {
     private int _currentSlot;

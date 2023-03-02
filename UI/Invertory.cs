@@ -1,7 +1,6 @@
 using Godot;
 using Isoland.Globals;
 using Isoland.Constants;
-using Isoland.Items;
 
 namespace Isoland.UI;
 public partial class Invertory : VBoxContainer
@@ -34,12 +33,13 @@ public partial class Invertory : VBoxContainer
     {
         OnReady();
 
-        //测试代码
-        _invertory.AddItem(GD.Load<Item>("Items/Key.tres"));
-        _invertory.AddItem(GD.Load<Item>("Items/Mail.tres"));
+        // //测试代码
+        // _invertory.AddItem(GD.Load<Item>("Items/Key.tres"));
+        // _invertory.AddItem(GD.Load<Item>("Items/Mail.tres"));
         //默认隐藏
         _hand.Hide();
         _label.Hide();
+
         _invertory.Change += () => UpdateUi();
         UpdateUi(true);
     }
@@ -89,8 +89,6 @@ public partial class Invertory : VBoxContainer
         tween.TweenProperty(_label, $"{Sprite2D.PropertyName.Modulate}:{nameof(Color.A)}", 1.0, 0.2);
         tween.TweenCallback(Callable.From(() => _timer.Start()));
     }
-
-
 
     #region Connect Signal 
     private void OnPrevPressed() => _invertory.Prev();

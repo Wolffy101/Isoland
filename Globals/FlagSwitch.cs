@@ -2,7 +2,6 @@ using Godot;
 using System;
 namespace Isoland.Globals;
 
-[RegisteredType]
 public partial class FlagSwitch : Node2D
 {
     [Export]
@@ -17,16 +16,6 @@ public partial class FlagSwitch : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // var nodeCount = GetChildCount();
-        // if (nodeCount > 0)
-        // {
-        //     _defaultNode = GetChild<Node2D>(0);
-        // }
-        // if (nodeCount > 1)
-        // {
-        //     _swtichNode = GetChild<Node2D>(1);
-        // }
-
         //使用此方法，内部会进行上面的判断
         _defaultNode = GetChildOrNull<Node2D>(0);
         _swtichNode = GetChildOrNull<Node2D>(1);

@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/gearbg.png-61a30810dd79599e08fa3efc8e8ba1be.c
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
