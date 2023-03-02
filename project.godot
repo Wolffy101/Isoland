@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+BgmPlayer="*res://Globals/SoundManager.tscn"
 SceneChanger="*res://Globals/SceneChanger.tscn"
 Game="*res://Globals/Game.cs"
 Hud="*res://Globals/HUD.tscn"

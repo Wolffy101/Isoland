@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hokxvjh66d62"]
+
+[ext_resource type="Script" path="res://Globals/SoundManager.cs" id="1_a1cnp"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_a1cnp")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]

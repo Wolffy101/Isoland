@@ -27,6 +27,7 @@ public partial class SceneChanger : CanvasLayer
     {
         Singleton = this;
         _colorRect = GetNode<ColorRect>("ColorRect");
+        OnSceneChange(null, GetTree().CurrentScene);
     }
 
 
@@ -52,6 +53,11 @@ public partial class SceneChanger : CanvasLayer
         root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
 
+        OnSceneChange(oldScene, newScene);
+    }
+
+    private void OnSceneChange(Node oldScene, Node newScene)
+    {
         var wasInGame = oldScene is Scene;
         var isInGame = newScene is Scene;
         if (wasInGame != isInGame)
@@ -65,6 +71,13 @@ public partial class SceneChanger : CanvasLayer
                 EmitSignal(SignalName.GameExited);
             }
         }
+
+        var music = "res://assets/Music/PaperWings.mp3";
+        if (newScene is Scene { MusicOverrideIsEmpty: false } scene)
+        {
+            music = scene.MusicOverride;
+        }
+        SoundManager.PlayMusic(music);
         oldScene.QueueFree();
     }
 }

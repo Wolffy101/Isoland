@@ -16,6 +16,7 @@ radius = 72.0625
 [node name="Background" instance=ExtResource("1_fnjs5")]
 texture = ExtResource("2_0r3ap")
 script = ExtResource("3_btaeq")
+musicOverride = "res://assets/Music/OpenRoad.mp3"
 
 [node name="ToH2" type="Area2D" parent="." index="0"]
 position = Vector2(-812, -440)

@@ -3,6 +3,8 @@ using System;
 namespace Isoland.Scenes;
 public partial class Scene : Sprite2D
 {
+    [Export(PropertyHint.File, "*.mp3")]
+    private string musicOverride;
     public override void _Ready()
     {
         var tween = CreateTween();
@@ -12,4 +14,7 @@ public partial class Scene : Sprite2D
              .From(Vector2.One * 1.05f);
 
     }
+    public bool MusicOverrideIsEmpty => string.IsNullOrWhiteSpace(MusicOverride);
+
+    public string MusicOverride { get => musicOverride; }
 }
