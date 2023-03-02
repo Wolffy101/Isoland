@@ -32,7 +32,7 @@ public partial class H2ABoard : Node2D
         get { return _config; }
         set
         {
-            if (_config is not null && !_config.IsConnected(Resource.SignalName.Changed, Callable.From(UpdateBoard)))
+            if (_config is not null && _config.IsConnected(Resource.SignalName.Changed, Callable.From(UpdateBoard)))
                 _config.Changed -= UpdateBoard;
 
             _config = value;
